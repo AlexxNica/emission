@@ -45,7 +45,10 @@ export default class WhiteButton extends React.Component<Props, State> {
       const duration = AnimationDuration
       Animated.parallel([
         Animated.timing(this.state.textOpacity, { toValue: 1, duration }),
-        Animated.timing(this.state.backgroundColor, { toValue: this.props.selected ? 1 : 0, duration }),
+        Animated.timing(this.state.backgroundColor, {
+          toValue: this.props.selected ? 1 : 0,
+          duration,
+        }),
       ]).start(this.props.onSelectionAnimationFinished)
     }
   }
@@ -56,7 +59,7 @@ export default class WhiteButton extends React.Component<Props, State> {
       outputRange: ["white", "black"],
     })
     const styling = {
-      underlayColor: (this.props.selected ? "black" : colors["purple-regular"]),
+      underlayColor: this.props.selected ? "black" : colors["purple-regular"],
       style: [styles.button, { backgroundColor }, this.props.style],
     }
     const headlineStyles = [styles.text, { opacity: this.state.textOpacity }]
@@ -64,7 +67,9 @@ export default class WhiteButton extends React.Component<Props, State> {
     return (
       <AnimatedTouchable onPress={this.props.onPress} activeOpacity={1} {...styling}>
         <View>
-          <AnimatedHeadline style={headlineStyles}>{this.props.text}</AnimatedHeadline>
+          <AnimatedHeadline style={headlineStyles}>
+            {this.props.text}
+          </AnimatedHeadline>
         </View>
       </AnimatedTouchable>
     )

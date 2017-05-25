@@ -18,8 +18,8 @@ interface InvertedButtonProps extends React.Props<InvertedButton> {
 }
 
 interface InvertedButtonState {
-    textOpacity: Animated.Value
-    backgroundColor: Animated.Value
+  textOpacity: Animated.Value
+  backgroundColor: Animated.Value
 }
 
 export default class InvertedButton extends React.Component<InvertedButtonProps, InvertedButtonState> {
@@ -42,7 +42,10 @@ export default class InvertedButton extends React.Component<InvertedButtonProps,
       const duration = AnimationDuration
       Animated.parallel([
         Animated.timing(this.state.textOpacity, { toValue: 1, duration }),
-        Animated.timing(this.state.backgroundColor, { toValue: this.props.selected ? 1 : 0, duration }),
+        Animated.timing(this.state.backgroundColor, {
+          toValue: this.props.selected ? 1 : 0,
+          duration,
+        }),
       ]).start(this.props.onSelectionAnimationFinished)
     }
   }
@@ -50,10 +53,10 @@ export default class InvertedButton extends React.Component<InvertedButtonProps,
   render() {
     const backgroundColor = this.state.backgroundColor.interpolate({
       inputRange: [0, 1],
-      outputRange: (["black", colors["purple-regular"]]),
+      outputRange: ["black", colors["purple-regular"]],
     })
     const styling = {
-      underlayColor: (this.props.selected ? "black" : colors["purple-regular"]),
+      underlayColor: this.props.selected ? "black" : colors["purple-regular"],
       style: [styles.button, { backgroundColor }],
     }
     let content: JSX.Element = null
@@ -61,7 +64,11 @@ export default class InvertedButton extends React.Component<InvertedButtonProps,
       content = <Spinner spinnerColor="white" style={{ backgroundColor: "transparent" }} />
     } else {
       const headlineStyles = [styles.text, { opacity: this.state.textOpacity }]
-      content = <AnimatedHeadline style={headlineStyles}>{this.props.text}</AnimatedHeadline>
+      content = (
+        <AnimatedHeadline style={headlineStyles}>
+          {this.props.text}
+        </AnimatedHeadline>
+      )
     }
     return (
       <AnimatedTouchable onPress={this.props.onPress} activeOpacity={1} disabled={this.props.inProgress} {...styling}>

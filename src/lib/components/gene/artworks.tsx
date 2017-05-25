@@ -12,13 +12,14 @@ class Artworks extends React.Component<any, any> {
   }
 
   render() {
-   return (
+    return (
       <ArtworksGrid
         artworks={[]}
         queryState={this.props.queryState}
         queryForPage={this.props.resolveQuery}
-        queryArtworksKeypath="gene.filtered_artworks.hits" />
-      )
+        queryArtworksKeypath="gene.filtered_artworks.hits"
+      />
+    )
   }
 }
 

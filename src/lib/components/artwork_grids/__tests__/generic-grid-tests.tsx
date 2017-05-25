@@ -5,7 +5,7 @@ import { renderWithLayout } from "../../../tests/render_with_layout"
 import GenericArtworksGrid from "../generic_grid"
 
 it("renders properly", () => {
-  const artworks = [ artwork(), artwork(), artwork() ]
+  const artworks = [artwork(), artwork(), artwork()]
 
   const layout = { width: 768 }
 

@@ -11,7 +11,7 @@ it("renders properly", () => {
   show2.partner.name = "A Different Gallery"
   show2.kind = "fair"
 
-  const shows = [ show1, show2 ]
+  const shows = [show1, show2]
 
   const list = renderer.create(<SmallList shows={shows} />).toJSON()
   expect(list).toMatchSnapshot()

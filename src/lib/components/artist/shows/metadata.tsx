@@ -1,28 +1,21 @@
 import * as React from "react"
 import * as Relay from "react-relay"
 
-import {
-  StyleSheet,
-  Text,
-  TextStyle,
-  View,
-  ViewProperties,
-  ViewStyle,
-} from "react-native"
+import { StyleSheet, Text, TextStyle, View, ViewProperties, ViewStyle } from "react-native"
 
 import colors from "../../../../data/colors"
 import SerifText from "../../text/serif"
 
 interface Props extends ViewProperties {
   show: {
-    name: string
-    kind: string
-    exhibition_period: string
+    name: string,
+    kind: string,
+    exhibition_period: string,
     location?: {
       city: string,
-    }
-    status_update?: string
-    status: string
+    },
+    status_update?: string,
+    status: string,
     partner?: {
       name: string,
     },
@@ -34,11 +27,11 @@ class Metadata extends React.Component<Props, any> {
     const partnerName = this.props.show.partner && this.props.show.partner.name
     return (
       <View style={styles.container}>
-        { partnerName && <Text style={styles.sansSerifText}>{partnerName.toUpperCase()}</Text>}
+        {partnerName && <Text style={styles.sansSerifText}>{partnerName.toUpperCase()}</Text>}
         <Text style={styles.sansSerifText}>{this.showTypeString()}</Text>
         <SerifText style={styles.serifText}>{this.props.show.name}</SerifText>
-        { this.dateAndLocationString() }
-        { this.statusText() }
+        {this.dateAndLocationString()}
+        {this.statusText()}
       </View>
     )
   }
@@ -53,8 +46,12 @@ class Metadata extends React.Component<Props, any> {
     const city = this.props.show.location && this.props.show.location.city
 
     if (city || exhibition_period) {
-      const text = city ? (city.trim() + ", " + exhibition_period) : exhibition_period
-      return <SerifText style={[styles.serifText, {color: "grey"}]}>{ text }</SerifText>
+      const text = city ? city.trim() + ", " + exhibition_period : exhibition_period
+      return (
+        <SerifText style={[styles.serifText, { color: "grey" }]}>
+          {text}
+        </SerifText>
+      )
     }
     return null
   }
@@ -62,16 +59,20 @@ class Metadata extends React.Component<Props, any> {
   statusText() {
     if (this.props.show.status_update) {
       let textColor = this.props.show.status === "upcoming" ? "green-regular" : "red-regular"
-      return <SerifText style={{color: colors[textColor]}}>{this.props.show.status_update}</SerifText>
+      return (
+        <SerifText style={{ color: colors[textColor] }}>
+          {this.props.show.status_update}
+        </SerifText>
+      )
     }
     return null
   }
 }
 
 interface Styles {
-  container: ViewStyle,
-  serifText: TextStyle,
-  sansSerifText: TextStyle,
+  container: ViewStyle
+  serifText: TextStyle
+  sansSerifText: TextStyle
 }
 
 const styles = StyleSheet.create<Styles>({
@@ -119,11 +120,15 @@ interface RelayProps {
     exhibition_period: string | null,
     status_update: string | null,
     status: string | null,
-    partner: {
-      name: string | null,
-    } | null,
-    location: {
-      city: string | null,
-    } | null,
-  },
+    partner:
+      | {
+        name: string | null,
+      }
+      | null,
+    location:
+      | {
+        city: string | null,
+      }
+      | null,
+  }
 }

@@ -1,7 +1,5 @@
 import * as React from "react"
-import {
-  requireNativeComponent,
-} from "react-native"
+import { requireNativeComponent } from "react-native"
 
 export default class LoadFailureView extends React.Component<any, any> {
   static propTypes = {

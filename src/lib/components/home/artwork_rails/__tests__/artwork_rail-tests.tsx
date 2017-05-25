@@ -37,9 +37,11 @@ it("renders nothing when there are no artworks", () => {
 
 it("renders when there are artworks", () => {
   const props = railProps(true) as any
-  props.rail.results = [{
+  props.rail.results = [
+    {
       __dataID__: "QXJ0d29yazphY20tZW5udWk=",
-  }]
+    },
+  ]
   const rail = new ArtworkRail(props)
   expect(rail.render()).not.toBeNull()
 })
@@ -47,29 +49,26 @@ it("renders when there are artworks", () => {
 const railProps = (startedFetching = true) => {
   return {
     rail: {
-        key: "live_auctions",
-        params: null,
-        context: {
-          href: "/auction/on-hold-sale",
-        },
-        results: [
-        ],
+      key: "live_auctions",
+      params: null,
+      context: {
+        href: "/auction/on-hold-sale",
+      },
+      results: [],
     },
     relay: {
-        pendingVariables: null,
-        route: {
-          name: "HomeRoute",
-          params: {
-          },
-          queries: {
-          },
-        },
-        setVariables: () => {
-          return
-        },
-        variables: {
-          fetchContent: startedFetching,
-        },
+      pendingVariables: null,
+      route: {
+        name: "HomeRoute",
+        params: {},
+        queries: {},
+      },
+      setVariables: () => {
+        return
+      },
+      variables: {
+        fetchContent: startedFetching,
+      },
     },
   }
 }

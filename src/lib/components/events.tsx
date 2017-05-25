@@ -1,7 +1,7 @@
 export type SwitchEvent = {
   nativeEvent: {
-    selectedIndex: number;
-  };
+    selectedIndex: number,
+  },
 }
 
 export type TabSelectionEvent = SwitchEvent

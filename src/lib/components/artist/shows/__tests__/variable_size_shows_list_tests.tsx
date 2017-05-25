@@ -10,12 +10,12 @@ it("renders properly", () => {
   show2.partner.name = "A Very Nice Gallery"
   show2.location.city = "London"
 
-  const shows = [ show1, show2 ]
+  const shows = [show1, show2]
   const list = renderer.create(<ShowsList shows={shows} showSize={"medium"} />).toJSON()
   expect(list).toMatchSnapshot()
 })
 
-let showProps = (n) => {
+let showProps = n => {
   return {
     __id: `show-expansive-exhibition-${n}`,
     href: "artsy.net/show",

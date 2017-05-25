@@ -11,10 +11,10 @@ import colors from "../../../../data/colors"
 interface Props extends ViewProperties {
   artist: {
     counts: {
-      for_sale_artworks: number
+      for_sale_artworks: number,
       artworks: number,
-    }
-    not_for_sale_artworks: any[]
+    },
+    not_for_sale_artworks: any[],
     for_sale_artworks: any[],
   }
   relay: any
@@ -44,7 +44,7 @@ class Artworks extends React.Component<Props, State> {
       })
     } else {
       let otherWorks: any[] = []
-      const showOtherWorks = (otherCount > 0) && (forSaleCount < 10 || this.state.completedForSaleWorks)
+      const showOtherWorks = otherCount > 0 && (forSaleCount < 10 || this.state.completedForSaleWorks)
       if (showOtherWorks) {
         otherWorks.push(<Separator style={styles.sectionSeparator} key="separator" />)
         otherWorks.push(
@@ -53,7 +53,7 @@ class Artworks extends React.Component<Props, State> {
             count: otherCount,
             filter: "IS_NOT_FOR_SALE",
             onComplete: null,
-          }),
+          })
         )
       }
       return (
@@ -77,14 +77,11 @@ class Artworks extends React.Component<Props, State> {
     return (
       <View key={title}>
         <SerifText style={styles.heading}>
-          <SerifText style={styles.text}>{title}</SerifText> <SerifText style={countStyles}>({count})</SerifText>
+          <SerifText style={styles.text}>{title}</SerifText>
+          {" "}
+          <SerifText style={countStyles}>({count})</SerifText>
         </SerifText>
-        <ArtworksGrid
-          artist={this.props.artist}
-          filter={filter}
-          onComplete={onComplete}
-          queryKey="artist"
-        />
+        <ArtworksGrid artist={this.props.artist} filter={filter} onComplete={onComplete} queryKey="artist" />
       </View>
     )
   }
@@ -126,11 +123,13 @@ export default Relay.createContainer(Artworks, {
 
 interface RelayProps {
   artist: {
-    counts: {
-      artworks: boolean | number | string | null,
-      for_sale_artworks: boolean | number | string | null,
-    } | null,
+    counts:
+      | {
+        artworks: boolean | number | string | null,
+        for_sale_artworks: boolean | number | string | null,
+      }
+      | null,
     for_sale_artworks: Array<boolean | number | string | null> | null,
     not_for_sale_artworks: Array<boolean | number | string | null> | null,
-  },
+  }
 }
