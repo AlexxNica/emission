@@ -3,9 +3,9 @@ import "react-native"
 import * as React from "react"
 import * as renderer from "react-test-renderer"
 
-import { allStates } from "../../__stories__/consignments-search.story"
+import { allStates } from "../../__stories__/consignments_search.story"
 
-import Search from "../artist-search-results"
+import Search from "../artist_search_results"
 
 describe("For different states", () => {
   allStates.forEach(test => {

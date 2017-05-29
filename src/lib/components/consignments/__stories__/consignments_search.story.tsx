@@ -4,7 +4,7 @@ import { View } from "react-native"
 import { storiesOf } from "@storybook/react-native"
 import { camelCase } from "lodash"
 
-import Search, { ArtistQueryData } from "../components/artist-search-results"
+import Search, { ArtistQueryData } from "../components/artist_search_results"
 
 const noQuery: ArtistQueryData = {
   query: null,

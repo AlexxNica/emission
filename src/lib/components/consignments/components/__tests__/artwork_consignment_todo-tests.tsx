@@ -3,9 +3,9 @@ import "react-native"
 import * as React from "react"
 import * as renderer from "react-test-renderer"
 
-import { allStates } from "../../__stories__/consignments-todo.story"
+import { allStates } from "../../__stories__/consignments_todo.story"
 
-import TODO from "../artwork-consignment-todo"
+import TODO from "../artwork_consignment_todo"
 
 describe("For different states", () => {
   for (const key in allStates) {
